@@ -1,0 +1,188 @@
+.demo-page {
+  min-height: 100vh;
+  padding: 1.25rem clamp(1rem, 4vw, 4rem) 3rem;
+  color: #f4f4f0;
+  background: #101010;
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #3a3a35;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.demo-back,
+.demo-github,
+.demo-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.demo-back:hover,
+.demo-github:hover,
+.demo-footer a:hover {
+  color: #ff6a00;
+}
+
+.demo-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #ff6a00;
+}
+
+.demo-intro {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(4rem, 9vw, 8rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.demo-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+  color: #ff6a00;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.demo-intro h1 {
+  max-width: 900px;
+  margin-bottom: 1.5rem;
+  color: #f4f4f0;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  letter-spacing: -0.06em;
+}
+
+.demo-intro h1 em {
+  color: #ff6a00;
+  font-style: normal;
+}
+
+.demo-summary {
+  max-width: 590px;
+  color: #b8b8b0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.demo-card {
+  overflow: hidden;
+  background: #181818;
+  border: 1px solid #3a3a35;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.demo-card:hover {
+  border-color: #ff6a00;
+  transform: translateY(-4px);
+}
+
+.demo-video-wrap {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #050505;
+}
+
+.demo-video-wrap video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.demo-category {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.35rem 0.55rem;
+  color: #111;
+  background: #ff6a00;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.demo-card-copy {
+  padding: 1.25rem 1.35rem 1.5rem;
+}
+
+.demo-card-copy h2 {
+  margin-bottom: 0.45rem;
+  color: #f4f4f0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+}
+
+.demo-card-copy p {
+  color: #999991;
+  font-size: 0.95rem;
+}
+
+.demo-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1440px;
+  margin: 4rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #3a3a35;
+  color: #77776f;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 700px) {
+  .demo-page {
+    padding-inline: 1rem;
+  }
+
+  .demo-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .demo-brand {
+    order: -1;
+    width: 100%;
+  }
+
+  .demo-intro {
+    padding-top: 4rem;
+  }
+
+  .demo-intro h1 {
+    font-size: clamp(3.2rem, 17vw, 6rem);
+  }
+
+  .demo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .demo-footer {
+    flex-direction: column;
+  }
+}

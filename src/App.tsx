@@ -116,6 +116,7 @@ function App() {
         </div>
         <div className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
           <a href="#usage" className="brutalist-btn secondary docs-link">DOCS <ArrowRight size={18} /></a>
+          <a href="/demo" className="brutalist-btn secondary docs-link">DEMO <ArrowRight size={16} /></a>
           <a href="https://github.com/riskchips/git-cli-scanner" target="_blank" rel="noreferrer" className="brutalist-btn secondary" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>GITHUB</a>
         </div>
       </nav>
