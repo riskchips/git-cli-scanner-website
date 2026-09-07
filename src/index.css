@@ -325,6 +325,8 @@ table.brutalist-table td {
 .marquee-container {
   width: 100%;
   overflow: hidden;
+  pointer-events: none;
+  user-select: none;
   background: var(--accent);
   color: white;
   border-top: var(--border-width) solid var(--border-color);
@@ -338,10 +340,12 @@ table.brutalist-table td {
 .marquee-content {
   display: inline-flex;
   white-space: nowrap;
-  animation: marquee 20s linear infinite;
+  pointer-events: none;
+  animation: marquee 42s linear infinite;
 }
 
 .marquee-text {
+  pointer-events: none;
   font-size: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
