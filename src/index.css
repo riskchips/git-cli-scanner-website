@@ -132,6 +132,8 @@ code, pre, .mono {
   box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0 var(--accent);
   cursor: pointer;
   transition: transform 0.1s, box-shadow 0.1s;
+  position: relative;
+  z-index: 10;
 }
 .terminal-block:active {
   transform: translate(var(--shadow-offset), var(--shadow-offset));

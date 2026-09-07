@@ -121,7 +121,7 @@ function App() {
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '800px' }}>
-            <div className="terminal-block" onClick={() => handleCopy('curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash', setCopiedCurl)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash', setCopiedCurl)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># macOS / Linux</span>
@@ -130,7 +130,7 @@ function App() {
               {copiedCurl ? <Check size={24} /> : <Copy size={24} />}
             </div>
             
-            <div className="terminal-block" onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># Node.js (via NPM)</span>
@@ -289,7 +289,7 @@ function App() {
           <div>
             <h3>Scan Staged Files</h3>
             <p>Runs a fast scan on files you've just added via <code>git add</code>.</p>
-            <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan --show-sol', setCopiedScan)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan --show-sol', setCopiedScan)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner scan --show-sol</span>
@@ -301,7 +301,7 @@ function App() {
           <div>
             <h3>Scan Entire Directory</h3>
             <p>Recursively scan all files in a folder (ignores .git and node_modules).</p>
-            <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-all ./src', setCopiedScanAll)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-all ./src', setCopiedScanAll)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner scan-all ./src</span>
@@ -314,7 +314,7 @@ function App() {
             <h3>Scan Git History</h3>
             <p>Scan historical commits across various parameters.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --since="30 days ago"', setCopiedHistory)}>
+              <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-history --since="30 days ago"', setCopiedHistory)}>
                 <div>
                   <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                   <span style={{ color: '#aaa', marginRight: '1rem' }}># Time-based</span>
@@ -323,7 +323,7 @@ function App() {
                 {copiedHistory ? <Check size={24} /> : <Copy size={24} />}
               </div>
               
-              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --all', setCopiedHistoryAll)}>
+              <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-history --all', setCopiedHistoryAll)}>
                 <div>
                   <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                   <span style={{ color: '#aaa', marginRight: '1rem' }}># All branches</span>
@@ -332,11 +332,11 @@ function App() {
                 {copiedHistoryAll ? <Check size={24} /> : <Copy size={24} />}
               </div>
 
-              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --depth=50', setCopiedHistoryDepth)}>
+              <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-history --id <hash>', setCopiedHistoryDepth)}>
                 <div>
                   <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
-                  <span style={{ color: '#aaa', marginRight: '1rem' }}># Max depth</span>
-                  <span>git-cli-scanner scan-history --depth=50</span>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}># Specific commit</span>
+                  <span>git-cli-scanner scan-history --id &lt;hash&gt;</span>
                 </div>
                 {copiedHistoryDepth ? <Check size={24} /> : <Copy size={24} />}
               </div>
@@ -346,7 +346,7 @@ function App() {
           <div>
             <h3>Interactive TUI Explorer</h3>
             <p>Launch the built-in terminal UI to browse files and see stats.</p>
-            <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner explore', setCopiedExplore)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner explore', setCopiedExplore)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner explore</span>
