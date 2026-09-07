@@ -122,20 +122,20 @@ function App() {
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '800px' }}>
-            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash', setCopiedCurl)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('curl -sL https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.sh | bash', setCopiedCurl)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># macOS / Linux</span>
-                <span>curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash</span>
+                <span>curl -sL https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.sh | bash</span>
               </div>
               {copiedCurl ? <Check size={24} /> : <Copy size={24} />}
             </div>
 
-            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('iwr https://riskchips.github.io/git-cli-scanner-website/install.ps1 -useb | iex', setCopiedWin)}>
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('iwr https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.ps1 -useb | iex', setCopiedWin)}>
               <div>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>&gt;</span>
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># Windows (PowerShell)</span>
-                <span>iwr https://riskchips.github.io/git-cli-scanner-website/install.ps1 -useb | iex</span>
+                <span>iwr https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.ps1 -useb | iex</span>
               </div>
               {copiedWin ? <Check size={24} /> : <Copy size={24} />}
             </div>
