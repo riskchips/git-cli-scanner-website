@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Terminal, ShieldAlert, GitCommit, Copy, Check, ShieldCheck, Zap, GitBranch, Package, Bot, Layers, Code } from 'lucide-react'
+import { Terminal, ShieldAlert, GitCommit, Copy, Check, ShieldCheck, Zap, GitBranch, Package, Bot, Layers, Code, ArrowLeft, ArrowRight, X } from 'lucide-react'
 // @ts-ignore
 import RippleDistortion from './RippleDistortion'
 // @ts-ignore
@@ -26,16 +26,52 @@ function App() {
   const [copiedScanAll, setCopiedScanAll] = useState(false)
   const [copiedHistory, setCopiedHistory] = useState(false)
   const [copiedExplore, setCopiedExplore] = useState(false)
+  const [isTutorialOpen, setIsTutorialOpen] = useState(false)
+  const [tutorialStep, setTutorialStep] = useState(0)
+
+  const tutorialSteps = [
+    {
+      eyebrow: '01 / INSTALL',
+      title: 'Start at the terminal',
+      body: 'Install the scanner globally, then run it from any project folder.',
+      command: 'npm install -g git-cli-scanner'
+    },
+    {
+      eyebrow: '02 / PROTECT',
+      title: 'Enable commit protection',
+      body: 'Run init once to add a pre-commit hook. Every staged commit is checked before it leaves your machine.',
+      command: 'git-cli-scanner init'
+    },
+    {
+      eyebrow: '03 / SCAN',
+      title: 'Scan what matters',
+      body: 'Scan staged files, a complete directory, or your entire Git history for exposed secrets.',
+      command: 'git-cli-scanner scan-all ./src'
+    },
+    {
+      eyebrow: '04 / EXPLORE',
+      title: 'Investigate interactively',
+      body: 'Open the terminal explorer to browse risky files, inspect findings, and scan on demand.',
+      command: 'git-cli-scanner explore'
+    }
+  ]
+
+  const openTutorial = () => {
+    setTutorialStep(0)
+    setIsTutorialOpen(true)
+  }
+
+  const closeTutorial = () => setIsTutorialOpen(false)
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--bg-color)' }}>
       <div style={{ position: 'fixed', inset: 0, zIndex: 50, pointerEvents: 'none' }}>
         <PixelTrail
-          gridSize={34}
-          trailSize={0.19}
+          gridSize={80}
+          trailSize={0.055}
           maxAge={200}
           interpolate={2.7}
-          color="#10B981"
+          color="#FF6A00"
           gooeyFilter={{ id: "custom-goo-filter", strength: 3 }}
         />
       </div>
@@ -51,9 +87,9 @@ function App() {
             pointerStrength={0.38}
             refraction={0.018}
             ripple
-            fontSize={90}
-            fontWeight={900}
-            style={{ height: '180px', width: '100%' }}
+            fontSize="clamp(3rem, 10vw, 9rem)"
+            fontWeight={800}
+            style={{ height: '320px', width: '100%' }}
           />
         </div>
         <div className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
@@ -93,12 +129,61 @@ function App() {
             <a href="#features" className="brutalist-btn">
               Explore Features <Zap size={20} />
             </a>
-            <a href="#usage" className="brutalist-btn secondary">
-              View Commands
-            </a>
+            <button type="button" className="brutalist-btn secondary" onClick={openTutorial}>
+              How to Use <ArrowRight size={20} />
+            </button>
           </div>
         </div>
       </section>
+
+      {isTutorialOpen && (
+        <div className="tutorial-backdrop" role="dialog" aria-modal="true" aria-labelledby="tutorial-title">
+          <div className="tutorial-panel">
+            <button type="button" className="tutorial-close" onClick={closeTutorial} aria-label="Close how to use tutorial">
+              <X size={28} />
+            </button>
+
+            <div className="tutorial-progress" aria-label={`Tutorial step ${tutorialStep + 1} of ${tutorialSteps.length}`}>
+              {tutorialSteps.map((step, index) => (
+                <span key={step.eyebrow} className={index === tutorialStep ? 'active' : ''} />
+              ))}
+            </div>
+
+            <div className="tutorial-content" key={tutorialStep}>
+              <p className="tutorial-eyebrow">{tutorialSteps[tutorialStep].eyebrow}</p>
+              <h2 id="tutorial-title">{tutorialSteps[tutorialStep].title}</h2>
+              <p>{tutorialSteps[tutorialStep].body}</p>
+              <div className="tutorial-command">
+                <span>$</span>
+                <code>{tutorialSteps[tutorialStep].command}</code>
+                <Copy size={18} />
+              </div>
+            </div>
+
+            <div className="tutorial-footer">
+              <span>{tutorialStep + 1} / {tutorialSteps.length}</span>
+              <div className="tutorial-actions">
+                <button
+                  type="button"
+                  className="tutorial-arrow"
+                  onClick={() => setTutorialStep(step => Math.max(0, step - 1))}
+                  disabled={tutorialStep === 0}
+                  aria-label="Previous tutorial step"
+                >
+                  <ArrowLeft size={24} />
+                </button>
+                {tutorialStep === tutorialSteps.length - 1 ? (
+                  <button type="button" className="tutorial-next" onClick={closeTutorial}>Finish <Check size={20} /></button>
+                ) : (
+                  <button type="button" className="tutorial-arrow" onClick={() => setTutorialStep(step => step + 1)} aria-label="Next tutorial step">
+                    <ArrowRight size={24} />
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="marquee-container" style={{ margin: 0, borderTop: 'none' }}>
         <div className="marquee-content">
@@ -144,6 +229,38 @@ function App() {
             <h3>Historical Scan</h3>
             <p style={{ marginTop: '1rem' }}>
               Run <code>git-cli-scanner scan-history --all</code> to rip through your entire git history across all branches and find buried secrets.
+            </p>
+          </div>
+
+          <div className="brutalist-card">
+            <Layers size={48} style={{ marginBottom: '1rem' }} />
+            <h3>50+ Security Scanners</h3>
+            <p style={{ marginTop: '1rem' }}>
+              Detects AWS keys, GCP tokens, Stripe secrets, Slack webhooks, Supabase keys, JWTs, and 50+ other sensitive credential types out of the box.
+            </p>
+          </div>
+
+          <div className="brutalist-card">
+            <Bot size={48} color="var(--accent)" style={{ marginBottom: '1rem' }} />
+            <h3>Detailed Remediation</h3>
+            <p style={{ marginTop: '1rem' }}>
+              Use the <code>--show-sol</code> flag to view full risk descriptions and step-by-step mitigation instructions for every leaked secret.
+            </p>
+          </div>
+
+          <div className="brutalist-card">
+            <Package size={48} style={{ marginBottom: '1rem' }} />
+            <h3>100% Local & Air-gapped</h3>
+            <p style={{ marginTop: '1rem' }}>
+              Blazing fast local scanning. Zero dependencies leaked or sent to external servers. Your code never leaves your machine.
+            </p>
+          </div>
+
+          <div className="brutalist-card">
+            <Folder size={48} color="var(--accent)" style={{ marginBottom: '1rem' }} />
+            <h3>Deep Directory Scans</h3>
+            <p style={{ marginTop: '1rem' }}>
+              Run <code>git-cli-scanner scan-all</code> to recursively rip through an entire directory and find secrets hiding in deep configuration files.
             </p>
           </div>
         </div>
@@ -277,7 +394,7 @@ function App() {
               height={500}
               environmentPreset="sunset"
               modelXOffset={0.1}
-              modelYOffset={-0.05}
+              modelYOffset={-0.97}
               enableMouseParallax={true}
               enableHoverRotation={true}
               showScreenshotButton={false}
