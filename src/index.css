@@ -16,6 +16,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Space Grotesk', sans-serif;
   background-color: var(--bg-color);
@@ -377,6 +381,11 @@ table.brutalist-table td {
 .navbar .nav-links {
   position: relative;
   z-index: 1;
+}
+
+.docs-link {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
 }
 
 .pixel-trail-layer {

@@ -115,7 +115,7 @@ function App() {
           />
         </div>
         <div className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
-          <a href="#usage" style={{ color: '#111', fontWeight: 'bold', textDecoration: 'none' }}>DOCS</a>
+          <a href="#usage" className="brutalist-btn secondary docs-link">DOCS <ArrowRight size={18} /></a>
           <a href="https://github.com/riskchips/git-cli-scanner" target="_blank" rel="noreferrer" className="brutalist-btn secondary" style={{ padding: '0.5rem 1rem', fontSize: '1rem' }}>GITHUB</a>
         </div>
       </nav>
@@ -469,7 +469,8 @@ function App() {
               enableHoverRotation={true}
               showScreenshotButton={false}
               fadeIn={false}
-              autoRotate={false}
+              autoRotate={true}
+              autoRotateSpeed={0.12}
               autoFrame={true}
               defaultZoom={1.2}
               minZoomDistance={0.5}
@@ -494,7 +495,7 @@ function App() {
 
 
       <section style={{ padding: '6rem 2rem', background: 'var(--accent)', borderBottom: '4px solid var(--border-color)', position: 'relative', zIndex: 10 }}>
-        <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '4rem', color: '#111' }}>BUILT WITH POWER</h2>
+        <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '4rem', color: '#111' }}>TECH STACK</h2>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8rem', flexWrap: 'wrap' }}>
           
           <div style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
