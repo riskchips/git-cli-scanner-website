@@ -407,7 +407,7 @@ function App() {
               height={500}
               environmentPreset="sunset"
               modelXOffset={0}
-              modelYOffset={-0.48}
+              modelYOffset={-0.25}
               enableMouseParallax={true}
               enableHoverRotation={true}
               showScreenshotButton={false}
