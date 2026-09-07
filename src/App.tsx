@@ -23,6 +23,7 @@ function App() {
 
   const [copiedInstall, setCopiedInstall] = useState(false)
   const [copiedCurl, setCopiedCurl] = useState(false)
+  const [copiedWin, setCopiedWin] = useState(false)
   const [copiedScan, setCopiedScan] = useState(false)
   const [copiedScanAll, setCopiedScanAll] = useState(false)
   const [copiedHistory, setCopiedHistory] = useState(false)
@@ -128,6 +129,15 @@ function App() {
                 <span>curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash</span>
               </div>
               {copiedCurl ? <Check size={24} /> : <Copy size={24} />}
+            </div>
+
+            <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('iwr https://riskchips.github.io/git-cli-scanner-website/install.ps1 -useb | iex', setCopiedWin)}>
+              <div>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}>&gt;</span>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}># Windows (PowerShell)</span>
+                <span>iwr https://riskchips.github.io/git-cli-scanner-website/install.ps1 -useb | iex</span>
+              </div>
+              {copiedWin ? <Check size={24} /> : <Copy size={24} />}
             </div>
             
             <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
