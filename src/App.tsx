@@ -12,10 +12,12 @@ import SplitFlapText from './SplitFlapText'
 import WarpText from './WarpText'
 // @ts-ignore
 import PixelTrail from './PixelTrail'
+// @ts-ignore
+import PrismaticBurst from './PrismaticBurst'
 import './index.css'
 
 const SnagAction = ({ copied, compact = false }: { copied: boolean; compact?: boolean }) => (
-  <span className={`snag-action${compact ? ' compact' : ''}`} aria-label={copied ? 'Command copied' : 'Copy command'}>
+  <span className={`snag-action${compact ? ' compact' : ''}${copied ? ' copied' : ''}`} aria-label={copied ? 'Command copied' : 'Copy command'}>
     {copied ? <><Check size={compact ? 16 : 20} /><span>SNAGGED</span></> : <><ScanLine size={compact ? 16 : 20} /><span>SNAG</span></>}
   </span>
 )
@@ -38,6 +40,7 @@ function App() {
   const [copiedExplore, setCopiedExplore] = useState(false)
   const [isTutorialOpen, setIsTutorialOpen] = useState(false)
   const [tutorialStep, setTutorialStep] = useState(0)
+  const [isRippleZone, setIsRippleZone] = useState(false)
 
   const tutorialSteps = [
     {
@@ -75,7 +78,7 @@ function App() {
 
   return (
     <div style={{ position: 'relative', minHeight: '100vh', background: 'var(--bg-color)' }}>
-      <div style={{ position: 'fixed', inset: 0, zIndex: 50, pointerEvents: 'none' }}>
+      <div className={`pixel-trail-layer${isRippleZone ? ' muted' : ''}`} style={{ position: 'fixed', inset: 0, zIndex: 50, pointerEvents: 'none' }}>
         <PixelTrail
           gridSize={80}
           trailSize={0.055}
@@ -86,6 +89,15 @@ function App() {
         />
       </div>
       <nav onPointerMove={(e) => e.stopPropagation()} className="navbar" style={{ position: 'relative', zIndex: 100, background: 'var(--bg-color)', display: 'flex', flexDirection: 'column', gap: '2rem', padding: '2rem' }}>
+        <PrismaticBurst
+          intensity={1.4}
+          speed={0.5}
+          animationType="rotate3d"
+          distort={1}
+          rayCount={24}
+          colors={['#ff6a00', '#4d3dff', '#ffffff']}
+          mixBlendMode="lighten"
+        />
         <div className="logo" style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           <WarpText
             text="GIT-CLI-SCANNER"
@@ -108,7 +120,13 @@ function App() {
         </div>
       </nav>
 
-      <section onPointerMove={(e) => e.stopPropagation()} className="hero" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section
+        onPointerEnter={() => setIsRippleZone(true)}
+        onPointerLeave={() => setIsRippleZone(false)}
+        onPointerMove={(e) => e.stopPropagation()}
+        className="hero"
+        style={{ position: 'relative', overflow: 'hidden' }}
+      >
         <div style={{ position: 'absolute', inset: 0, zIndex: 0 }}>
           <RippleDistortion
             src="https://images.unsplash.com/photo-1782977389500-dd7adad33ebe?q=80&w=3416&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"

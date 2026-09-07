@@ -196,6 +196,8 @@ code, pre, .mono {
 }
 
 .snag-action {
+  position: relative;
+  overflow: hidden;
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
@@ -211,14 +213,56 @@ code, pre, .mono {
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.snag-action::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -35%;
+  width: 22%;
+  background: rgba(255, 255, 255, 0.75);
+  content: '';
+  transform: skewX(-18deg);
+  transition: left 0s;
+}
+
+.terminal-block:hover .snag-action {
+  background: rgba(255, 106, 0, 0.2);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.terminal-block:hover .snag-action::after {
+  left: 125%;
+  transition: left 0.45s ease;
 }
 
 .snag-action svg {
-  transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.snag-action span {
+  position: relative;
+  z-index: 1;
 }
 
 .terminal-block:hover .snag-action svg {
-  transform: translateX(3px) rotate(-8deg);
+  transform: scale(1.12);
+}
+
+.snag-action.copied {
+  color: #111;
+  background: #39ff14;
+  border-color: #39ff14;
+  animation: snag-confirm 0.35s ease-out;
+}
+
+.snag-action.copied svg {
+  animation: snag-check 0.35s ease-out;
 }
 
 .snag-action.compact {
@@ -226,9 +270,15 @@ code, pre, .mono {
   font-size: 0.72rem;
 }
 
-.terminal-block:hover .snag-action {
-  background: var(--accent);
-  color: #111;
+@keyframes snag-confirm {
+  0% { transform: scale(0.92); }
+  70% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+@keyframes snag-check {
+  0% { transform: scale(0.65) rotate(-25deg); }
+  100% { transform: scale(1) rotate(0); }
 }
 
 .badge {
@@ -312,12 +362,29 @@ table.brutalist-table td {
   border-bottom: var(--border-width) solid var(--border-color);
   position: static;
   z-index: 100;
+  overflow: hidden;
+  isolation: isolate;
 }
 .navbar .logo {
+  position: relative;
+  z-index: 1;
   font-weight: 900;
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: -1px;
+}
+
+.navbar .nav-links {
+  position: relative;
+  z-index: 1;
+}
+
+.pixel-trail-layer {
+  transition: opacity 0.18s ease;
+}
+
+.pixel-trail-layer.muted {
+  opacity: 0;
 }
 
 .tutorial-backdrop {
