@@ -26,6 +26,8 @@ function App() {
   const [copiedScan, setCopiedScan] = useState(false)
   const [copiedScanAll, setCopiedScanAll] = useState(false)
   const [copiedHistory, setCopiedHistory] = useState(false)
+  const [copiedHistoryAll, setCopiedHistoryAll] = useState(false)
+  const [copiedHistoryDepth, setCopiedHistoryDepth] = useState(false)
   const [copiedExplore, setCopiedExplore] = useState(false)
   const [isTutorialOpen, setIsTutorialOpen] = useState(false)
   const [tutorialStep, setTutorialStep] = useState(0)
@@ -310,13 +312,34 @@ function App() {
 
           <div>
             <h3>Scan Git History</h3>
-            <p>Scan historical commits for exposed secrets (use <code>--all</code> for every branch).</p>
-            <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --since="30 days ago"', setCopiedHistory)}>
-              <div>
-                <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
-                <span>git-cli-scanner scan-history --since="30 days ago"</span>
+            <p>Scan historical commits across various parameters.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --since="30 days ago"', setCopiedHistory)}>
+                <div>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}># Time-based</span>
+                  <span>git-cli-scanner scan-history --since="30 days ago"</span>
+                </div>
+                {copiedHistory ? <Check size={24} /> : <Copy size={24} />}
               </div>
-              {copiedHistory ? <Check size={24} /> : <Copy size={24} />}
+              
+              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --all', setCopiedHistoryAll)}>
+                <div>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}># All branches</span>
+                  <span>git-cli-scanner scan-history --all</span>
+                </div>
+                {copiedHistoryAll ? <Check size={24} /> : <Copy size={24} />}
+              </div>
+
+              <div className="terminal-block" onClick={() => handleCopy('git-cli-scanner scan-history --depth=50', setCopiedHistoryDepth)}>
+                <div>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
+                  <span style={{ color: '#aaa', marginRight: '1rem' }}># Max depth</span>
+                  <span>git-cli-scanner scan-history --depth=50</span>
+                </div>
+                {copiedHistoryDepth ? <Check size={24} /> : <Copy size={24} />}
+              </div>
             </div>
           </div>
 
