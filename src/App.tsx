@@ -446,7 +446,7 @@ function App() {
       <section className="container" style={{ marginTop: '6rem', textAlign: 'center' }}>
         <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>YOU SIT, WHILE WE SCAN FOR VULNERABILITIES.</h2>
         <p style={{ fontSize: '1.25rem', marginBottom: '2rem' }}>Relax, we've got your codebase covered.</p>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="model-stage" style={{ display: 'flex', justifyContent: 'center' }}>
           <div 
             onPointerMove={(e) => e.stopPropagation()}
             style={{ 
@@ -494,11 +494,11 @@ function App() {
 
 
 
-      <section style={{ padding: '6rem 2rem', background: 'var(--accent)', borderBottom: '4px solid var(--border-color)', position: 'relative', zIndex: 10 }}>
+      <section className="tech-stack-section" style={{ padding: '6rem 2rem', background: 'var(--accent)', borderBottom: '4px solid var(--border-color)', position: 'relative', zIndex: 10 }}>
         <h2 style={{ textAlign: 'center', fontSize: '2.5rem', marginBottom: '4rem', color: '#111' }}>TECH STACK</h2>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8rem', flexWrap: 'wrap' }}>
+        <div className="tech-stack-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8rem', flexWrap: 'wrap' }}>
           
-          <div style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="tech-stack-item" style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Folder 
               size={2.5} 
               color="#00FFFF" 
@@ -510,7 +510,7 @@ function App() {
             />
           </div>
 
-          <div style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="tech-stack-item" style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Folder 
               size={2.5} 
               color="#5227FF" 
@@ -522,7 +522,7 @@ function App() {
             />
           </div>
 
-          <div style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <div className="tech-stack-item" style={{ position: 'relative', height: '350px', width: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Folder 
               size={2.5} 
               color="#39FF14" 

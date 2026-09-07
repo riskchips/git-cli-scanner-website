@@ -574,6 +574,160 @@ table.brutalist-table td {
 }
 
 @media (max-width: 600px) {
+  body {
+    line-height: 1.45;
+  }
+
+  .navbar {
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .navbar .logo {
+    min-height: 130px;
+  }
+
+  .navbar .logo .warp-text {
+    height: 140px !important;
+    min-height: 140px;
+  }
+
+  .navbar .nav-links {
+    width: 100%;
+    justify-content: center;
+    gap: 0.65rem !important;
+  }
+
+  .navbar .nav-links .brutalist-btn {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+    box-shadow: 4px 4px 0 #111;
+  }
+
+  .hero {
+    padding: 2rem 0 3rem;
+  }
+
+  .hero .container,
+  .container {
+    width: 100%;
+    padding: 1.25rem;
+  }
+
+  .hero .container {
+    padding: 1.5rem 1.1rem;
+  }
+
+  h1 {
+    font-size: clamp(2.35rem, 12vw, 4.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+  }
+
+  .hero h2 {
+    font-size: clamp(1.6rem, 8vw, 2.6rem);
+  }
+
+  .hero p {
+    font-size: 1.05rem !important;
+    margin: 1.25rem 0 !important;
+  }
+
+  .hero .terminal-block {
+    margin: 0.65rem 0;
+  }
+
+  .hero > .container > div:last-child {
+    flex-direction: column;
+    gap: 0.75rem !important;
+    margin-top: 1.5rem !important;
+  }
+
+  .hero > .container > div:last-child .brutalist-btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .grid,
+  .grid-2,
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .brutalist-card {
+    padding: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .brutalist-card svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .terminal-block {
+    align-items: flex-start;
+    padding-right: 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .terminal-block > div:first-child {
+    flex: 1;
+  }
+
+  .snag-action {
+    margin-top: 0.1rem;
+    padding: 0.3rem 0.45rem;
+    font-size: 0.68rem;
+  }
+
+  .brutalist-table {
+    display: block;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 0.78rem;
+  }
+
+  table.brutalist-table th,
+  table.brutalist-table td {
+    min-width: 130px;
+    padding: 0.65rem;
+  }
+
+  .model-stage > div {
+    width: 100% !important;
+    max-width: calc(100vw - 2.5rem);
+  }
+
+  .model-stage > div > div {
+    width: 100% !important;
+    height: min(64vw, 360px) !important;
+  }
+
+  .tech-stack-section {
+    padding: 3rem 1rem !important;
+  }
+
+  .tech-stack-section h2 {
+    margin-bottom: 1.5rem !important;
+    font-size: 2rem !important;
+  }
+
+  .tech-stack-grid {
+    gap: 0.75rem !important;
+  }
+
+  .tech-stack-item {
+    width: 160px !important;
+    height: 190px !important;
+  }
+
+  .tech-stack-item > div {
+    transform: scale(1.45) !important;
+  }
+
   .terminal-block {
     align-items: flex-start;
     padding-right: 0.75rem;
