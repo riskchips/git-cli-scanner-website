@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Terminal, ShieldAlert, GitCommit, Copy, Check, ShieldCheck, Zap, GitBranch, Package, Bot, Layers, Code, ArrowLeft, ArrowRight, X } from 'lucide-react'
+import { Terminal, ShieldAlert, GitCommit, Check, ShieldCheck, Zap, GitBranch, Package, Bot, Layers, Code, ArrowLeft, ArrowRight, X, ScanLine } from 'lucide-react'
 // @ts-ignore
 import RippleDistortion from './RippleDistortion'
 // @ts-ignore
@@ -13,6 +13,12 @@ import WarpText from './WarpText'
 // @ts-ignore
 import PixelTrail from './PixelTrail'
 import './index.css'
+
+const SnagAction = ({ copied, compact = false }: { copied: boolean; compact?: boolean }) => (
+  <span className={`snag-action${compact ? ' compact' : ''}`} aria-label={copied ? 'Command copied' : 'Copy command'}>
+    {copied ? <><Check size={compact ? 16 : 20} /><span>SNAGGED</span></> : <><ScanLine size={compact ? 16 : 20} /><span>SNAG</span></>}
+  </span>
+)
 
 function App() {
   const handleCopy = (text: string, setter: (val: boolean) => void) => {
@@ -128,7 +134,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># macOS / Linux</span>
                 <span>curl -sL https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.sh | bash</span>
               </div>
-              {copiedCurl ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedCurl} />
             </div>
 
             <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('iwr https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.ps1 -useb | iex', setCopiedWin)}>
@@ -137,7 +143,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># Windows (PowerShell)</span>
                 <span>iwr https://raw.githubusercontent.com/riskchips/git-cli-scanner/main/install.ps1 -useb | iex</span>
               </div>
-              {copiedWin ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedWin} />
             </div>
             
             <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
@@ -146,7 +152,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}># Node.js (via NPM)</span>
                 <span>npm install -g git-cli-scanner</span>
               </div>
-              {copiedInstall ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedInstall} />
             </div>
           </div>
 
@@ -181,7 +187,7 @@ function App() {
               <div className="tutorial-command">
                 <span>$</span>
                 <code>{tutorialSteps[tutorialStep].command}</code>
-                <Copy size={18} />
+                <SnagAction copied={false} compact />
               </div>
             </div>
 
@@ -304,7 +310,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner scan --show-sol</span>
               </div>
-              {copiedScan ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedScan} />
             </div>
           </div>
 
@@ -316,7 +322,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner scan-all ./src</span>
               </div>
-              {copiedScanAll ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedScanAll} />
             </div>
           </div>
 
@@ -330,7 +336,7 @@ function App() {
                   <span style={{ color: '#aaa', marginRight: '1rem' }}># Time-based</span>
                   <span>git-cli-scanner scan-history --since="30 days ago"</span>
                 </div>
-                {copiedHistory ? <Check size={24} /> : <Copy size={24} />}
+                <SnagAction copied={copiedHistory} />
               </div>
               
               <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-history --all', setCopiedHistoryAll)}>
@@ -339,7 +345,7 @@ function App() {
                   <span style={{ color: '#aaa', marginRight: '1rem' }}># All branches</span>
                   <span>git-cli-scanner scan-history --all</span>
                 </div>
-                {copiedHistoryAll ? <Check size={24} /> : <Copy size={24} />}
+                <SnagAction copied={copiedHistoryAll} />
               </div>
 
               <div className="terminal-block" onPointerMove={(e) => e.stopPropagation()} onClick={() => handleCopy('git-cli-scanner scan-history --id <hash>', setCopiedHistoryDepth)}>
@@ -348,7 +354,7 @@ function App() {
                   <span style={{ color: '#aaa', marginRight: '1rem' }}># Specific commit</span>
                   <span>git-cli-scanner scan-history --id &lt;hash&gt;</span>
                 </div>
-                {copiedHistoryDepth ? <Check size={24} /> : <Copy size={24} />}
+                <SnagAction copied={copiedHistoryDepth} />
               </div>
             </div>
           </div>
@@ -361,7 +367,7 @@ function App() {
                 <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
                 <span>git-cli-scanner explore</span>
               </div>
-              {copiedExplore ? <Check size={24} /> : <Copy size={24} />}
+              <SnagAction copied={copiedExplore} />
             </div>
           </div>
         </div>
