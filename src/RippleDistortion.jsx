@@ -352,8 +352,8 @@ const RippleDistortion = ({
       setNewWave(point[0], point[1], Math.max(1, cfg.clickStrength));
     };
 
-    window.addEventListener('pointermove', onMove, { passive: true });
-    window.addEventListener('pointerdown', onDown, { passive: true });
+    window.addEventListener('pointermove', onMove, { passive: true, capture: true });
+    window.addEventListener('pointerdown', onDown, { passive: true, capture: true });
 
     let raf = 0;
     let previousTime = 0;
@@ -404,8 +404,8 @@ const RippleDistortion = ({
       disposed = true;
       cancelAnimationFrame(raf);
       ro.disconnect();
-      window.removeEventListener('pointermove', onMove);
-      window.removeEventListener('pointerdown', onDown);
+      window.removeEventListener('pointermove', onMove, true);
+      window.removeEventListener('pointerdown', onDown, true);
       uniformsRef.current = null;
       if (canvas.parentNode === mount) mount.removeChild(canvas);
       const ext = gl.getExtension('WEBGL_lose_context');
