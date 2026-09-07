@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { ArrowLeft, ExternalLink, Play, ShieldCheck } from 'lucide-react'
 import './demo.css'
 
@@ -65,6 +66,44 @@ const videos: DemoVideo[] = [
   }
 ]
 
+function DemoVideo({ video }: { video: DemoVideo }) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const element = videoRef.current
+    if (!element) return undefined
+
+    const loadVideo = () => {
+      if (element.src) return
+      element.src = `/videos/${video.file}`
+      element.load()
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      loadVideo()
+      return undefined
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0]?.isIntersecting) {
+          loadVideo()
+          observer.disconnect()
+        }
+      },
+      { rootMargin: '240px 0px' }
+    )
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [video.file])
+
+  return (
+    <video ref={videoRef} controls preload="metadata" playsInline>
+      Your browser does not support the video element.
+    </video>
+  )
+}
+
 function Demo() {
   return (
     <main className="demo-page">
@@ -91,9 +130,7 @@ function Demo() {
         {videos.map(video => (
           <article className="demo-card" key={video.file}>
             <div className="demo-video-wrap">
-              <video controls preload="metadata" playsInline src={`/videos/${video.file}`}>
-                Your browser does not support the video element.
-              </video>
+              <DemoVideo video={video} />
               <span className="demo-category">{video.category}</span>
             </div>
             <div className="demo-card-copy">
