@@ -22,6 +22,7 @@ function App() {
   }
 
   const [copiedInstall, setCopiedInstall] = useState(false)
+  const [copiedCurl, setCopiedCurl] = useState(false)
   const [copiedScan, setCopiedScan] = useState(false)
   const [copiedScanAll, setCopiedScanAll] = useState(false)
   const [copiedHistory, setCopiedHistory] = useState(false)
@@ -117,12 +118,24 @@ function App() {
             A powerful, local, blazing fast CLI vulnerability scanner for secrets, API keys, passwords, private keys, and infrastructure configs. Blocks bad commits instantly.
           </p>
 
-          <div className="terminal-block" onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
-            <div>
-              <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
-              <span>npm install -g git-cli-scanner</span>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '800px' }}>
+            <div className="terminal-block" onClick={() => handleCopy('curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash', setCopiedCurl)}>
+              <div>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}># macOS / Linux</span>
+                <span>curl -sL https://riskchips.github.io/git-cli-scanner-website/install.sh | bash</span>
+              </div>
+              {copiedCurl ? <Check size={24} /> : <Copy size={24} />}
             </div>
-            {copiedInstall ? <Check size={24} /> : <Copy size={24} />}
+            
+            <div className="terminal-block" onClick={() => handleCopy('npm install -g git-cli-scanner', setCopiedInstall)}>
+              <div>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}>$</span>
+                <span style={{ color: '#aaa', marginRight: '1rem' }}># Node.js (via NPM)</span>
+                <span>npm install -g git-cli-scanner</span>
+              </div>
+              {copiedInstall ? <Check size={24} /> : <Copy size={24} />}
+            </div>
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', marginTop: '3rem', position: 'relative', zIndex: 10 }}>
