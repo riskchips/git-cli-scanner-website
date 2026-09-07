@@ -406,14 +406,14 @@ function App() {
               width={800}
               height={500}
               environmentPreset="sunset"
-              modelXOffset={0.1}
-              modelYOffset={-0.97}
+              modelXOffset={0}
+              modelYOffset={-0.48}
               enableMouseParallax={true}
               enableHoverRotation={true}
               showScreenshotButton={false}
               fadeIn={false}
               autoRotate={false}
-              autoFrame={false}
+              autoFrame={true}
               defaultZoom={1.2}
               minZoomDistance={0.5}
             />
